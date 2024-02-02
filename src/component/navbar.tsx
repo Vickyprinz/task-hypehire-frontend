@@ -1,17 +1,17 @@
-import { Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom"
 
 const Navbar = () => {
   return (
     <>
       <nav className="hidden md:block sticky top-0 border-b border-zinc-100 h-[72px] bg-white z-50">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8  ">
           <div className="flex items-center justify-between h-[72px]">
-            <div className="flex gap-4 items-center">
+            <div className="flex gap-4  items-center ">
               <img
                 src="https://www.testvalley.kr/logo/logo-new.svg"
                 alt="testvalley"
               />
-              <div className="flex">
+              <div className="flex ">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -30,10 +30,10 @@ const Navbar = () => {
                 <p className="text-primary">카테고리</p>
               </div>
             </div>
-            <div className="relative w-[335px]">
-              <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+            <div className="relative w-[335px] ">
+              <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none ">
                 <svg
-                  className="w-5 h-5"
+                  className="w-5 h-5 "
                   fill="none"
                   stroke="grey"
                   viewBox="0 0 24 24"
@@ -50,7 +50,7 @@ const Navbar = () => {
               <input
                 type="search"
                 id="default-search"
-                className="block w-full h-[41.96px] p-4 ps-10 text-sm bg-white border border-gray-300 rounded-lg focus:ring-primary focus:border-primary outline-none"
+                className="block w-full h-[41.96px] p-4 ps-10 text-sm bg-white border border-gray-300 rounded-lg  focus:ring-primary focus:border-primary outline-none"
                 placeholder="살까말까 고민된다면 검색해보세요!"
                 required
               />
@@ -76,7 +76,7 @@ const Navbar = () => {
           />
           <div className="flex gap-4">
             <img
-              src="https://www.testvalley.kr/common/bell_default.svg"
+              src="	https://www.testvalley.kr/common/bell_default.svg"
               alt="testvalley"
             />
             <img
@@ -87,12 +87,9 @@ const Navbar = () => {
         </div>
       </nav>
 
-      <nav className="sm:block md:hidden fixed bottom-0 flex justify-between items-center z-50 bg-white h-[70px] w-screen px-6 text-center">
+      <nav className="sm:block md:hidden fixed bottom-0 flex justify-between items-center z-50 bg-white h-[70px]  w-screen px-6 text-center">
         <div className="space-y-2 flex flex-col items-center">
-          <img
-            src="https://www.testvalley.kr/navibar/ico-home-on.svg"
-            alt=""
-          />
+          <img src="https://www.testvalley.kr/navibar/ico-home-on.svg" alt="" />
           <p className="text-[11px]">홈</p>
         </div>
         <div className="space-y-2 flex flex-col items-center">
@@ -127,7 +124,7 @@ const Navbar = () => {
 
       <Outlet />
     </>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar

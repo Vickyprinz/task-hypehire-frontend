@@ -2,69 +2,71 @@ import { screen, waitFor } from "@testing-library/react"
 import App from "./App"
 import { renderWithProviders } from "./utils/test-utils"
 
-test("App renders correctly with initial state", () => {
+test("App should have correct initial render", () => {
   renderWithProviders(<App />)
 
-  // Verify initial render state
+  // The app should be rendered correctly
   expect(screen.getByText(/learn/i)).toBeInTheDocument()
+
+  // Initial state: count should be 0, incrementValue should be 2
   expect(screen.getByLabelText("Count")).toHaveTextContent("0")
   expect(screen.getByLabelText("Set increment amount")).toHaveValue(2)
 })
 
-test("Increment and Decrement buttons work correctly", async () => {
+test("Increment value and Decrement value should work as expected", async () => {
   const { user } = renderWithProviders(<App />)
 
-  // Increment count
+  // Click on "+" => Count should be 1
   await user.click(screen.getByLabelText("Increment value"))
   expect(screen.getByLabelText("Count")).toHaveTextContent("1")
 
-  // Decrement count
+  // Click on "-" => Count should be 0
   await user.click(screen.getByLabelText("Decrement value"))
   expect(screen.getByLabelText("Count")).toHaveTextContent("0")
 })
 
-test("Add Amount functionality works correctly", async () => {
+test("Add Amount should work as expected", async () => {
   const { user } = renderWithProviders(<App />)
 
-  // Add Amount button increases count to 2
+  // "Add Amount" button is clicked => Count should be 2
   await user.click(screen.getByText("Add Amount"))
   expect(screen.getByLabelText("Count")).toHaveTextContent("2")
 
-  // Custom increment value of 2 doubles the count to 4
   const incrementValueInput = screen.getByLabelText("Set increment amount")
+  // incrementValue is 2, click on "Add Amount" => Count should be 4
   await user.clear(incrementValueInput)
   await user.type(incrementValueInput, "2")
   await user.click(screen.getByText("Add Amount"))
   expect(screen.getByLabelText("Count")).toHaveTextContent("4")
 
-  // Negative increment value of -1 increases count to 3
+  // [Negative number] incrementValue is -1, click on "Add Amount" => Count should be 3
   await user.clear(incrementValueInput)
   await user.type(incrementValueInput, "-1")
   await user.click(screen.getByText("Add Amount"))
   expect(screen.getByLabelText("Count")).toHaveTextContent("3")
 })
 
-test("Add Async functionality works correctly", async () => {
+it("Add Async should work as expected", async () => {
   const { user } = renderWithProviders(<App />)
 
-  // Add Async button increases count to 2
+  // "Add Async" button is clicked => Count should be 2
   await user.click(screen.getByText("Add Async"))
 
-  // Wait for count to update
   await waitFor(() =>
     expect(screen.getByLabelText("Count")).toHaveTextContent("2"),
   )
 
-  // Custom increment value of 2 doubles the count to 4
   const incrementValueInput = screen.getByLabelText("Set increment amount")
+  // incrementValue is 2, click on "Add Async" => Count should be 4
   await user.clear(incrementValueInput)
   await user.type(incrementValueInput, "2")
+
   await user.click(screen.getByText("Add Async"))
   await waitFor(() =>
     expect(screen.getByLabelText("Count")).toHaveTextContent("4"),
   )
 
-  // Negative increment value of -1 increases count to 3
+  // [Negative number] incrementValue is -1, click on "Add Async" => Count should be 3
   await user.clear(incrementValueInput)
   await user.type(incrementValueInput, "-1")
   await user.click(screen.getByText("Add Async"))
@@ -73,29 +75,29 @@ test("Add Async functionality works correctly", async () => {
   )
 })
 
-test("Add If Odd functionality works correctly", async () => {
+test("Add If Odd should work as expected", async () => {
   const { user } = renderWithProviders(<App />)
 
-  // Add If Odd button does not change count when count is even
+  // "Add If Odd" button is clicked => Count should stay 0
   await user.click(screen.getByText("Add If Odd"))
   expect(screen.getByLabelText("Count")).toHaveTextContent("0")
 
-  // Increment count to 1
+  // Click on "+" => Count should be updated to 1
   await user.click(screen.getByLabelText("Increment value"))
   expect(screen.getByLabelText("Count")).toHaveTextContent("1")
 
-  // Add If Odd button increases count to 3
+  // "Add If Odd" button is clicked => Count should be updated to 3
   await user.click(screen.getByText("Add If Odd"))
   expect(screen.getByLabelText("Count")).toHaveTextContent("3")
 
-  // Custom increment value of 1 increases count to 4
   const incrementValueInput = screen.getByLabelText("Set increment amount")
+  // incrementValue is 1, click on "Add If Odd" => Count should be updated to 4
   await user.clear(incrementValueInput)
   await user.type(incrementValueInput, "1")
   await user.click(screen.getByText("Add If Odd"))
   expect(screen.getByLabelText("Count")).toHaveTextContent("4")
 
-  // Custom increment value of -1 does not change count when count is even
+  // click on "Add If Odd" => Count should stay 4
   await user.clear(incrementValueInput)
   await user.type(incrementValueInput, "-1")
   await user.click(screen.getByText("Add If Odd"))

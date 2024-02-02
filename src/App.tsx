@@ -1,6 +1,6 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom"
 import { HomeScreen } from "./features/home/Home"
-import Navbar from "./component/navbar"
+import Navbar from "./component"
 
 export const router = createBrowserRouter([
   {
