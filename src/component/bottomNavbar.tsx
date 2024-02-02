@@ -1,4 +1,4 @@
-function BottomNav() {
+function BottomNavbar() {
   return (
     <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200">
       <div className="flex justify-between max-w-screen-sm mx-auto px-4 py-2">
@@ -55,4 +55,4 @@ function BottomNav() {
   )
 }
 
-export default BottomNav
+export default BottomNavbar
